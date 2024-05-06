@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg',
     ];
 
     /**

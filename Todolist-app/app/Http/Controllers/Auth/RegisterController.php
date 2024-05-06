@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'avatar' => ['required'],
         ]);
     }
 
@@ -63,10 +64,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',         
+            'avatar' => 'required',
+        ]);
+
+        if($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();//Lay ten mo rong .jpg, .png...
+            $filename = time().'.'.$extension;//
+            $file->move('avatar/',$filename) ;  //upload len thu muc avatar trong piblic
+        }
+
+        $data = $request->all();
+        
+        $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'avatar' => $filename ?? NULL,
         ]);
+
+        return redirect("login");
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
     }
 }
