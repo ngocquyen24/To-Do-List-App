@@ -1,9 +1,8 @@
 <?php
 
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
 
-=======
+
 use App\Http\Controllers\Admin\AdminTaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
->>>>>>> to-do-app-v2
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,18 +26,15 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
-=======
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard'); 
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -71,4 +67,3 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
 });
 
 
->>>>>>> to-do-app-v2
