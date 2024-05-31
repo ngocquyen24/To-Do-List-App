@@ -1,0 +1,40 @@
+tr, td, th{
+    padding-right: 80px;
+}
+
+.edit{
+    font-size: 25px;
+    color: black;
+    padding-right: 10px;
+}
+.delete{
+    font-size: 22px;
+    border: 0;
+    padding-top: 3px;
+}
+.form-edit{
+    display: grid;
+}
+.block{
+    padding-bottom: 10px;
+}
+.cancel{
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+}
+
+.card-hder{
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    padding-bottom: 30px;
+}
+
+.row-body{
+    background-color: rgb(194, 237, 224);
+}
+
+.bg-color{
+    background: rgb(15, 15, 32);
+}
