@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+<<<<<<< HEAD
+=======
+        'avatar',
+        'phone',
+>>>>>>> to-do-app-v2
     ];
 
     /**
