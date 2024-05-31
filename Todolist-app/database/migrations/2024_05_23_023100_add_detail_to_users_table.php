@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('role')->default('0');
-            $table->string('avatar');
-            $table->string('phone');
         });
     }
 

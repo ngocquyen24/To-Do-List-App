@@ -21,12 +21,14 @@ class AdminTaskController extends Controller
             $request->validate([
                 'task_name' => ['required'],
                 'task_details' => ['required'],
+                'status' => ['required'],
 
             ]);
 
             $task->update([
                 'task_name' => $request->get('task_name'),
                 'task_details' => $request->get('task_details'),
+                'status' => $request->get('status'),
 
             ]);
 

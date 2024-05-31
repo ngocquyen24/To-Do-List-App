@@ -27,13 +27,10 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
-.footer > * {
-  flex:  1 100%;
-}
 
 .footer__addr {
   margin-right: 1.25em;
-  margin-bottom: 2em;
+
 }
 
 .footer__logo {
@@ -230,13 +227,6 @@ body {
     </li>
   </ul>
   
-  <div class="legal">
-    <p>&copy; 2024 Something. All rights reserved.</p>
-    
-    <div class="legal__links">
-      <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
-    </div>
-  </div>
 </footer>
     </div>
 </div>

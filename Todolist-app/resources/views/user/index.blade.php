@@ -7,8 +7,8 @@
                 <tr class="">
                     <th class="px-2 py-2">Name</th>
                     <th class="px-2 py-2">Email</th>
-                    <th class="px-2 py-2">image</th>
-                    <th class="px-2 py-2">phone</th>
+                    <th class="px-2 py-2">Image</th>
+                    <th class="px-2 py-2">Phone</th>
                 </tr>
             </thead>
             <tbody>
