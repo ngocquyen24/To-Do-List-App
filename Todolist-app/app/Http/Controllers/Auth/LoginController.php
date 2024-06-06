@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 
+
 use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -29,7 +31,8 @@ class LoginController extends Controller
      * @var string
      */
 
-    protected $redirectTo = '/home';
+
+    protected $redirectTo = '/tasks';
 
     // protected $redirectTo = '/home';
      protected function authenticated()
@@ -41,6 +44,7 @@ class LoginController extends Controller
             return redirect('/home')->with('status','Logged In Sussessfully');
         }
     }
+
 
 
 

@@ -11,17 +11,20 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     public function index(Request $request){
-        
-        $user = Auth::id(); 
+
+
+        $user = Auth::id();
         $tasks = DB::table('tasks')->where('user_id', $user)->get();
-        
+        $user1 = User::find(auth()->user()->id);
         $admin_role = $request->user()->role;
         $tasks_admin = Task::all();
-        return view('tasks.index', ['tasks'=>$tasks,'admin_role'=>$admin_role,'tasks_admin'=>$tasks_admin]);
+        return view('tasks.index', ['tasks'=>$tasks,'admin_role'=>$admin_role,'tasks_admin'=>$tasks_admin,'user'=>$user1]);
     }
 
     public function create(){
-        return view('tasks.create');
+        $user = User::find(auth()->user()->id);
+        return view('tasks.create',compact('user'));
+
     }
 
     public function store(Request $request){
@@ -42,7 +45,10 @@ class TaskController extends Controller
     }
 
     public function edit(Task $task){
-        return view('tasks.edit', compact('task'));
+
+        $user = User::find(auth()->user()->id);
+        return view('tasks.edit', ['task'=>$task, 'user'=>$user]);
+
     }
 
     public function update(Task $task, Request $request){
@@ -51,11 +57,13 @@ class TaskController extends Controller
             'task_details' => ['required'],
             'status' => ['required'],
         ]);
-        
+
+
         $task->update([
             'task_name' => $request->get('task_name'),
             'task_details' => $request->get('task_details'),
-            'status' => $request->get('status'),    
+            'status' => $request->get('status'),
+
         ]);
 
         return redirect('/tasks')->with('msg', 'Task updated successfully');
@@ -65,7 +73,7 @@ class TaskController extends Controller
         $task->delete();
         return redirect('/tasks')->with('deleted', 'Task deleted successfully');
     }
-    
+
     public function markTaskAsCompleted(Request $request){
         $id = $request->get('id');
         $task = Task::findOrFail($id);
@@ -78,11 +86,13 @@ class TaskController extends Controller
             }
         }
         else{
-      
+
+
             return view('tasks.denied');
         }
     }
-    
-    
-    
+
+
+
+
 }

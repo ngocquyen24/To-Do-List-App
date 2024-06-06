@@ -59,12 +59,14 @@ class UserController extends Controller
                         'email'=>$request->get('email'),
                         'phone'=>$request->get('phone'),
                         'avatar'=>$filename,
-                    ]); 
+
+                    ]);
                 }
-                
-                
-                
-                
+
+
+
+
+
                 return redirect()->back()->with('success','Profile info updated successfully!');
             }else{
                 return redirect()->back();
@@ -75,10 +77,14 @@ class UserController extends Controller
     }
 
     public function passwordEdit(){
+
+
         if(Auth::user()){
+
             $user = User::find(Auth::user()->id);
             if($user){
-                return view('user.password');
+                return view('user.password',compact('user'));
+
             }else{
                 return redirect()->back();
             }
@@ -93,7 +99,7 @@ class UserController extends Controller
             'password'=>'required|min:7|required_with:password_confirmation'
         ]);
         $user = User::find(Auth::user()->id);
-        
+
         if($user){
             if(Hash::check($request->get('oldPassword'), $user->password) && $validate){
                 $user->password = Hash::make($request->get('password'));

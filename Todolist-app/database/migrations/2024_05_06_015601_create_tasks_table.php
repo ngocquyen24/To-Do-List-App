@@ -17,9 +17,11 @@ return new class extends Migration
             $table->text('task_details');
             $table->unsignedBigInteger('user_id');
 
+
             $table->string('status');
 
             
+
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

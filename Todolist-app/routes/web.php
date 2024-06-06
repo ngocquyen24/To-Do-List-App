@@ -1,16 +1,20 @@
 <?php
 
 
+
 use App\Http\Controllers\Admin\AdminTaskController;
 use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomAuthController;
 
+
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +32,18 @@ Route::get('/', function () {
 });
 
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard'); 
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
-
-
 
 
 Auth::routes();
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('dashboard_user',[App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard_user');
 
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
@@ -56,6 +58,7 @@ Route::get('user/{user}/edit',[UserController::class, 'edit'])->name('user.edit'
 Route::put('user/{user}',[UserController::class, 'update'])->name('user.update');
 Route::get('user/password',[UserController::class,'passwordEdit'])->name('user.password');
 Route::post('user/password/update',[UserController::class,'passwordUpdate'])->name('user.passwordUpdate');
+
 
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
