@@ -77,6 +77,7 @@
 </div>
 
 
+
 @yield('content')
 
 
@@ -84,6 +85,10 @@
 
 @extends('footer')
 
+
+
+
+   
 
 
 </body>
