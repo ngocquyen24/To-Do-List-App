@@ -47,7 +47,7 @@ class CustomAuthController extends Controller
 
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'phone' => 'required|min:10',
@@ -61,7 +61,7 @@ class CustomAuthController extends Controller
         $check = $this->create($data);
          
 
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect("login")->withSuccess('You have signed-in');
     }
 
     public function create(array $data)

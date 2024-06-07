@@ -28,7 +28,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('admin/images/favicon.ico') }}" />
 
-    <link rel="stylesheet" href="{{asset('asset/css/styles.css')}}">
+    
     
 
 </head>

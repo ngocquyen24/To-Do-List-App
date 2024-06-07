@@ -21,8 +21,8 @@ class AdminUserController extends Controller
     public function update(Request $request,User $user){
         $request->validate([
             'name' => ['required'],
-            'email' => ['required|email|unique:users'],
-            'avatar' => ['required|mimes:jpeg,jpg,png,gif|max:1000'],
+            'email' => ['required'],
+            'avatar' => ['nullable','mimes:jpeg,jpg,png,gif'],
             'phone' => ['required'],
             'role' => ['required'],
 

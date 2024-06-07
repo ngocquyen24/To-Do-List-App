@@ -33,16 +33,16 @@ class UserController extends Controller
             $validate = null;
             if(Auth::user()->email === $request->get('email')){
                 $validate = $request->validate([
-                    'name'=>['required','min:3'],
-                    'email'=>['required','email'],
+                    'name'=>['required','min:3','max:100'],
+                    'email'=>['required','email','max:100'],
                     'phone'=>['required','min:10'],
                     'avatar'=>['required|mimes:jpeg,jpg,png,gif|max:1000'],
                 ]);
             }else{
                 $validate = $request->validate([
-                    'name'=>['required','min:3'],
+                    'name'=>['required','min:3','max:100'],
                     'email'=>['required','email', 'unique:users'],
-                    'phone'=>['required','min:10'],
+                    'phone'=>['required','min:10','max:11'],
                     'avatar'=>['required|mimes:jpeg,jpg,png,gif|max:1000'],
                 ]);
             }
