@@ -10,6 +10,7 @@ class AdminTaskController extends Controller
 {
     public function index(){
         $tasks = Task::all();
+        
         return view('admin.task.task',compact('tasks'));
     }
     public function edit(Task $task){

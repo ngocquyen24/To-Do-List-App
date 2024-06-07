@@ -112,7 +112,7 @@ input {
 }
 
 .btn-cancel {
-    width: 30%;
+    width: 20%;
     height: 40px;
     border: 1px solid #dcdce6;
     border-radius: 8px;
@@ -523,10 +523,5 @@ footer p a:hover {
     .task-form {
         width: auto;
 
-    }
-}
-@media (max-width: 416.99px){
-    .btn_add{
-        width:69%;
     }
 }

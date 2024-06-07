@@ -71,7 +71,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     Route::get('task/{task}/editTask', [AdminTaskController::class, 'edit'])->name('edit.task');
     Route::put('taskEdit/{task}', [AdminTaskController::class, 'update'])->name('update.task');
     Route::delete('taskDelete/{task}', [AdminTaskController::class, 'delete'])->name('delete.task');
-
+    
 
 });
 

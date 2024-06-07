@@ -86,7 +86,7 @@ bat dau tu day  -->
          <div class="form-group">
 
             <label class="block" for="task_details">phone: </label>
-            <input class="w-full mb-2  bg-gray-200 form-control" type="text" name="phone" value="{{$user->phone}}">
+            <input class="w-full mb-2 bg-gray-200 form-control" type="text" name="phone" value="{{$user->phone}}">
             @error('phone')
                 <p class="text-base pb-4 text-danger">{{$message}}</p>
             @enderror
@@ -109,14 +109,9 @@ bat dau tu day  -->
 
          </div>
 
-
-
-
-
-
-            <div class="flex gap-4 mt-3">
+            <div class="flex gap-4">
                 <button class="btn_add">Update</button>
-                <a href="{{route('user.index')}}" class="block bg-red-500 py-2 px-4 btn-cancel">Cancel</a>
+                <a href="{{route('user.index')}}" class="block bg-red-500 py-2 px-3 btn-cancel">Cancel</a>
             </div>
         </form>
 
@@ -126,7 +121,7 @@ bat dau tu day  -->
             <div class="tab-pane gallery" id="favorite">
       			<div class="" style="width: 50%; margin: 0 auto">
       				<div class="ml-auto ">
-                      <form action="{{route('user.passwordUpdate')}}" method="POST" class="mt-4">
+                      <form action="{{route('user.passwordUpdate')}}" method="POST" class="mt-4" novalidate>
             @csrf
             <div class="form-group">
             <label class="block" for="oldPassword">Current Password: </label>
@@ -134,11 +129,19 @@ bat dau tu day  -->
             @error('oldPassword')
                 <p class="text-base pb-4 text-danger">{{$message}}</p>
             @enderror
+
+            @if(session('msg') !== null)
+            <p class="text-danger p-2 bg-gray-300 rounded mt-2">{{session('msg')}}</p>
+        @endif
+
+        @if(session('error') !== null)
+            <p class="text-danger p-2 bg-gray-300 rounded mt-2">{{session('error')}}</p>
+        @endif
             </div>
 
             <div class="form-group">
             <label class="block" for="password">New Password: </label>
-            <input class="w-full mb-4 rounded-lg bg-gray-200 form-control" type="password" name="password">
+            <input class="w-full mb-4 rounded-lg bg-gray-200 form-control" type="password" name="password" id="password">
             @error('password')
                 <p class="text-base pb-4 text-danger">{{$message}}</p>
             @enderror
@@ -153,9 +156,9 @@ bat dau tu day  -->
             </div>
 
 
-            <div class="flex gap-4 mt-3 pt-3 pb-3">
+            <div class="flex gap-4 ">
                 <button class="btn_add">Update</button>
-                <a href="{{route('user.index')}}" class="block bg-red-500 py-2 px-4 btn-cancel mb-3">Cancel</a>
+                <a href="{{route('user.index')}}" class="block bg-red-500 py-2 px-3 btn-cancel">Cancel</a>
             </div>
         </form>
       				</div>
@@ -180,6 +183,23 @@ bat dau tu day  -->
     </div>
 
     <script>
+    
+    const repass = document.querySelector('#repass');
+    const password = document.querySelector('#password');
+
+    password.addEventListener('input',()=>{
+        repass.setAttribute("pattern", password.value)
+    })
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit',(e)=>{
+        if(form.checkValidity()=== false){
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    });
+
     document.getElementById('imageInput').addEventListener('change', function(event) {
         var file = event.target.files[0];
         var reader = new FileReader();

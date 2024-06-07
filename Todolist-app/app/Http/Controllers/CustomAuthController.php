@@ -44,8 +44,6 @@ class CustomAuthController extends Controller
       
     public function customRegistration(Request $request)
     {  
-
-
         $request->validate([
             'name' => 'required|max:100',
             'email' => 'required|email|unique:users',
@@ -56,6 +54,7 @@ class CustomAuthController extends Controller
             
             
         ]);
+        
            
         $data = $request->all();
         $check = $this->create($data);

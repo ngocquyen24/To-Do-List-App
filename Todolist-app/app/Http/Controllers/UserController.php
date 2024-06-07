@@ -35,15 +35,16 @@ class UserController extends Controller
                 $validate = $request->validate([
                     'name'=>['required','min:3','max:100'],
                     'email'=>['required','email','max:100'],
-                    'phone'=>['required','min:10'],
-                    'avatar'=>['required|mimes:jpeg,jpg,png,gif|max:1000'],
+                    'phone'=>['required', 'regex:/^[+84|0][0-9]{9,10}/'],
+                    'avatar'=>['nullable','mimes:jpeg,jpg,png,gif','max:1000'],
                 ]);
             }else{
                 $validate = $request->validate([
                     'name'=>['required','min:3','max:100'],
                     'email'=>['required','email', 'unique:users'],
                     'phone'=>['required','min:10','max:11'],
-                    'avatar'=>['required|mimes:jpeg,jpg,png,gif|max:1000'],
+                    
+                    
                 ]);
             }
             if($validate){
@@ -101,8 +102,10 @@ class UserController extends Controller
 
     public function passwordUpdate(Request $request){
         $validate = $request->validate([
-            'oldPassword'=>'required|min:7',
-            'password'=>'required|min:7|required_with:password_confirmation'
+            'oldPassword'=>'required|min:6|max:20',
+            'password'=>'required|min:6|required_with:password_confirmation|different:oldPassword',
+            'password_confirmation' => 'required_with:password|same:password|min:6'
+            
         ]);
         $user = User::find(Auth::user()->id);
 
